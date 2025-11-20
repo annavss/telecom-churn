@@ -34,8 +34,8 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install dependencies 
+        run: pip install -r requirements.txt -t .
 
       # Optional: Add step to run tests here
 
@@ -69,6 +69,7 @@ jobs:
         uses: Azure/functions-action@v1
         id: deploy-to-function
         with:
+          sku: 'flexconsumption'
           app-name: 'annapredictschurn'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
